@@ -11,6 +11,9 @@ gcc -c main.c
 gcc -c hello.c
 gcc main.o hello.o -o main
 
+4) параметр одиннадцатых плюсов
+-std=c++11
+
 -----------
 
 The standard way to compile this program is with the command
