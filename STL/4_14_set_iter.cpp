@@ -21,7 +21,6 @@ template<typename KeyType, typename ValueType>
 void printMap(const std::string& header, const std::map<KeyType, ValueType>& container) {
 
     std::cout << header << std::endl;
-    
     for(const std::pair<KeyType, ValueType>& item : container) {
         std::cout << "key = " << item.first << " value = " << item.second << std::endl;
     }

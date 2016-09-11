@@ -43,6 +43,5 @@ int main(int argc, const char * argv[]) {
         std::cout << "Substring did not find";
     }
     
-    
     return 0;
 }
