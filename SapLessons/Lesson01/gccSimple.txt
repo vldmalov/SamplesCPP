@@ -1,17 +1,17 @@
 GCC compile
 1) The standard way to compile this program is with the command
-g++ hello.cpp -o hello
+g++ main.cpp -o main
 
 2) If you use the -E option, nothing is done except preprocessing
-g++ -E hello.cpp > someFileName
+g++ -E main.cpp > someFileName
 
 2) Два файла. Компилируем и линкуем в бинарник main
-g++ main.cpp hello.cpp -o main
+g++ main.cpp utils.cpp -o main
 
 3) Alternatively, the above program could be compiled using the following two commands
 g++ -c main.cpp
-g++ -c hello.cpp
-g++ main.o hello.o -o main
+g++ -c utils.cpp
+g++ main.o utils.o -o main
 
 4) параметр одиннадцатых плюсов
 -std=c++11
