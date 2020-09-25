@@ -26563,8 +26563,8 @@ int main()
 
 
  std::cout << "Another platform output" << std::endl;
- std::cout << "By the way, Pi = " << = 3.1415 << std::endl;
+ std::cout << "By the way, Pi = " << 3.1415d << std::endl;
 
- std::cout << "MIN(3, 7) is" << "! = " << (((3) < (7)) ? (3) : (7)) << std::endl;
+ std::cout << "MIN(3, 7) is " << (((3) < (7)) ? (3) : (7)) << std::endl;
  return 0;
 }

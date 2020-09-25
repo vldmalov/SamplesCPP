@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define PI = 3.1415
+#define PI 3.1415d
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
 int main()
@@ -12,6 +12,6 @@ int main()
 	std::cout << "Another platform output" << std::endl;
 	std::cout << "By the way, Pi = " << PI << std::endl;
 #endif
-	std::cout << "MIN(3, 7) is" << "! = " << MIN(3, 7) << std::endl;
+	std::cout << "MIN(3, 7) is " << MIN(3, 7) << std::endl;
 	return 0;
 }
