@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 
 int factorial(int n)
 {
@@ -12,15 +11,17 @@ int factorial(int n)
 	return result;
 }
 
-int main()
+int main(int argc, const char* argv[])
 {
-	std::ifstream inFile("input.txt");
-	std::ofstream outFile("output.txt");
+	std::cout << "Program name is " << argv[0] << "\n";
+	std::cout << "Input params count " << argc << std::endl;
 
-	int arg;
-	inFile >> arg;
-	
-	// std::cout << arg << "! = " << factorial(arg) << std::endl;
-	outFile      << arg << "! = " << factorial(arg) << std::endl;
+	if(argc == 1) {
+		std::cerr << "First programm param must be factorial arg" << std::endl;
+		return 1;
+	}
+
+	int n = atoi(argv[1]);
+	std::cout << n << "! = " << factorial(n) << std::endl;
 	return 0;
 }

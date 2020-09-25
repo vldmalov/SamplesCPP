@@ -1,5 +1,10 @@
 #include <iostream>
 
+// 1. Включаемые файлы. Нейминг включаемых файлов стандартной библиотеки. Препроцессинг
+// 2. Пространство имени std
+// 3. Потоки ввода/вывода (коротко)
+// Q1: Постфиксный/префиксные ++
+// Q2: Переписать while на for
 int factorial(int n)
 {
 	int result{ 1 };
@@ -11,17 +16,12 @@ int factorial(int n)
 	return result;
 }
 
-int main(int argc, const char* argv[])
+int main()
 {
-	std::cout << "Program name is " << argv[0] << "\n";
-	std::cout << "Input params count " << argc << std::endl;
+	int arg{ 0 };
+	std::cout << "Program enter factorial argument\n";
+	std::cin >> arg;
 
-	if(argc == 1) {
-		std::cerr << "First programm param must be factorial arg" << std::endl;
-		return 1;
-	}
-
-	int n = atoi(argv[1]);
-	std::cout << n << "! = " << factorial(n) << std::endl;
+	std::cout << arg << "! = " << factorial(arg) << std::endl;
 	return 0;
 }
