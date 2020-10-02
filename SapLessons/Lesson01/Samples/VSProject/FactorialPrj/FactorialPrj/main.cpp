@@ -1,11 +1,13 @@
 #include <iostream>
+#include <iomanip>
 
-// 1. Release/Debug
-// 2. Отлака программы
-// 3. Ожидание завершения выполнениия программы
-// 4. Разбиваем на модули (раздельная компиляция, линковка)
-// 4.1 Форвард декларейшен
-// 4.2 Хидера
+// 1. Release/Debug (РїРѕРєР°Р·Р°С‚СЊ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РёРµ С„Р°Р№Р»С‹)
+// 2. РџРµСЂРµРїРѕР»РЅРµРЅРёРµ С‚РёРїР° (РїСЂРѕ СЂР°Р·РјРµСЂС‹ С‚РёРїРѕРІ Рё С‡С‚Рѕ СЌС‚Рѕ Р·РЅР°С‡РёС‚)
+// 3. Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ РІС‹РІРѕРґР°
+// 3. РћС‚Р»Р°РєР° РїСЂРѕРіСЂР°РјРјС‹
+// 4. Р Р°Р·Р±РёРІР°РµРј РЅР° РјРѕРґСѓР»Рё (СЂР°Р·РґРµР»СЊРЅР°СЏ РєРѕРјРїРёР»СЏС†РёСЏ, Р»РёРЅРєРѕРІРєР°)
+// 4.1 Р¤РѕСЂРІР°СЂРґ РґРµРєР»Р°СЂРµР№С€РµРЅ
+// 4.2 РҐРёРґРµСЂР°
 
 int factorial(int n)
 {
@@ -21,12 +23,19 @@ int factorial(int n)
 int main()
 {
 	int arg{ 0 };
-	std::cout << "Program enter factorial argument\n";
-	std::cin >> arg;
 
-	std::cout << arg << "! = " << factorial(arg) << std::endl;
-
-	while (std::cin.get() != 'q') {};
+	//std::cout << std::setw(22) << std::left << "Sizeof short is " << sizeof(short) << std::endl;
+	//std::cout << std::setw(22) << std::left << "Sizeof int is " << sizeof(int) << std::endl;
+	//std::cout << std::setw(22) << std::left << "Sizeof long is " << sizeof(long) << std::endl;
+	//std::cout << std::setw(22) << std::left << "Sizeof long long is " << sizeof(long long) << std::endl;
+	while (!std::cin.fail())
+	{
+		std::cout << "Enter factorial argument (int) or any other key to exit: ";
+		if(std::cin >> arg)
+		{
+			std::cout << arg << "! = " << factorial(arg) << std::endl;
+		}
+	};
 
 	return 0;
 }

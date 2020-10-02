@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 
+// 1. Введение в файловые потоки
 int factorial(int n)
 {
 	int result{ 1 };

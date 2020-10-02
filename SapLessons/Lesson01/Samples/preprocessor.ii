@@ -26550,12 +26550,9 @@ namespace std
 
 }
 # 2 "./01_preprocess.cpp" 2
+# 15 "./01_preprocess.cpp"
 
-
-
-
-
-# 6 "./01_preprocess.cpp"
+# 15 "./01_preprocess.cpp"
 int main()
 {
 
@@ -26563,8 +26560,17 @@ int main()
 
 
  std::cout << "Another platform output" << std::endl;
- std::cout << "By the way, Pi = " << 3.1415d << std::endl;
+ std::cout << "By the way, Pi = " << 3.1415 << std::endl;
+
+
+
+
+
 
  std::cout << "MIN(3, 7) is " << (((3) < (7)) ? (3) : (7)) << std::endl;
+ std::cout << (4 + 1*4 + 1) << std::endl;
+
+ int val{ 2 };
+ std::cout << (++val*++val) << std::endl;
  return 0;
 }
