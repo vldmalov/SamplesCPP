@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 
 // 1. Release/Debug (показать результирующие файлы)
 // 2. Переполнение типа (про размеры типов и что это значит)
@@ -23,11 +22,6 @@ int factorial(int n)
 int main()
 {
 	int arg{ 0 };
-
-	//std::cout << std::setw(22) << std::left << "Sizeof short is " << sizeof(short) << std::endl;
-	//std::cout << std::setw(22) << std::left << "Sizeof int is " << sizeof(int) << std::endl;
-	//std::cout << std::setw(22) << std::left << "Sizeof long is " << sizeof(long) << std::endl;
-	//std::cout << std::setw(22) << std::left << "Sizeof long long is " << sizeof(long long) << std::endl;
 	while (!std::cin.fail())
 	{
 		std::cout << "Enter factorial argument (int) or any other key to exit: ";
