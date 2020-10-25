@@ -1,0 +1,141 @@
+Примеры плохого кода
+
+*) Объявление пачки переменных в начале функции
+*) Не инициализированные переменные
+*) Передача структур по значению
+*) DRY. Повторяемый код
+*)
+*)
+*)
+*)
+
+1)
+if (cellSize._TunerGround) {
+	return true;
+}
+else {
+	return false;
+}
+
+2)
+if (hasBlockedConv)
+{
+	PreparePartsInternal(true);
+}
+PreparePartsInternal(false);
+
+
+3) Бесполезные комментарии
+bool isHelpBonusChip();  //выпала ли проводимая фишка фишка
+void LoadFromXml(const pugi::xml_node &node) override; //загрузка из XML
+
+2)
+std::vector<Items> vec;
+... // заполняем вектор 
+
+bool IsPossibleSmth(const std::vector<Items> items) // по значению
+{
+	bool result{false};
+	for(size_t idx = 0; idx < vec.size(); ++idx)
+	{
+		// calculations ...
+		result = true; // продолжаем итерироваться
+	}
+
+	return result;
+}
+
+3)
+bool CarryGeneratorManager::HasBusyChips() const
+{
+	if (!HasMechanicOnLevel()) {
+		return false;
+	}
+
+	bool hasBusyChips(false);
+	gM3.grid->ForEachExistingCell([&hasBusyChips](Cell& cell) {
+		if (cell._chip->IsBusy(Chip::BusyType::CarryGenerator)) {
+			hasBusyChips = true;
+		}
+	}, Grid::RectType::Region);
+	return hasBusyChips;
+}
+
+4) Делегаты
+void ForEachCellPos(std::function<void(int x, int y)> fn, RectType type);
+
+5) Побочные эффекты в функциях
+
+class ScrollWidget final
+{
+public:
+	ScrollWidget() = default;
+	~ScrollWidget() = default;
+
+	bool IsNeedWait(const IPoint& pos);
+
+
+};
+
+bool ScrollWidget::IsNeedWait(const IPoint& pos)
+{
+	if (_isWait) {
+		if (gM3.rif->IsFieldStable()) {
+			_isWait = false;
+		}
+		else {
+			return true;
+		}
+	}
+}
+
+6) Вложенность
+	void IvyManager::CreateRunningIvyAtLayer(const IPoint& newPos, const IPoint& originPos)
+	{
+		if (gM3.grid->CellExists(newPos, Grid::RectType::Region))
+		{
+			{
+				auto ivy = gM3.grid->at(newPos, Grid::RectType::Region)._TunerIvy.get();
+				if (!ivy)
+				{
+					_ivyVegetationPower = 0;
+					CreateIvyAtLayer(newPos, IvyLayer::Background, false);
+					OnNewIvyCell();
+				}
+			}
+
+			{
+				auto ivy = gM3.grid->at(newPos, Grid::RectType::Region)._TunerIvy.get();
+				if (ivy)
+				{
+					ivy->RunActionFrom(originPos);
+					ivy->SetDelayBeforeDestroy();
+				}
+			}
+		}
+	}
+
+
+Задача
+
+941. Valid Mountain Array
+Given an array A of integers, return true if and only if it is a valid mountain array.
+Recall that A is a mountain array if and only if:
+
+A.length >= 3
+There exists some i with 0 < i < A.length - 1 such that:
+A[0] < A[1] < ... A[i-1] < A[i]
+A[i] > A[i+1] > ... > A[A.length - 1]
+
+Example 1:
+
+Input: [2,1]
+Output: false
+Example 2:
+
+Input: [3,5,5]
+Output: false
+Example 3:
+
+Input: [0,3,2,1]
+Output: true
