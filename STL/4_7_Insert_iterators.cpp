@@ -29,7 +29,6 @@ int main(int argc, const char * argv[]) {
     
     //std::copy(begin(vec), end(vec), std::back_insert_iterator< std::deque<int>>(deq1));
     std::copy(begin(vec), end(vec), std::back_inserter(deq1));
-    
     print_container<std::deque<int> >("Deque items 1", deq1);
     
 //    std::copy(begin(vec), end(vec), std::front_insert_iterator< std::deque<int>>(deq2));

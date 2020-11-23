@@ -5,7 +5,7 @@
 
 class IntWrapper {
 public:
-    explicit IntWrapper()
+    IntWrapper()
     : m_value(0)
     { std::cout << "IntWrapper constructor\n"; }
 
@@ -24,7 +24,8 @@ void Func(SharedIntWrapper pVal, unsigned currentCount)
 
 int main()
 {
-    SharedIntWrapper pWrappedVal(new IntWrapper());
+    //SharedIntWrapper pWrappedVal(new IntWrapper());
+    SharedIntWrapper pWrappedVal = std::make_shared<IntWrapper>();
     assert(pWrappedVal.use_count() == 1);
     
     {

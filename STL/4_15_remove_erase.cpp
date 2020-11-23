@@ -22,10 +22,15 @@ int main()
     std::string name = "alexandra";
     std::vector<char> vec = std::vector<char>(name.begin(), name.end());
     printContainer(vec);
+    std::cout << "vec size = " << vec.size() << std::endl;
 
     std::vector<char>::const_iterator end_it = std::remove(vec.begin(), vec.end(), 'a');
     printContainer(vec);
+    std::cout << "vec size = " << vec.size() << std::endl;
 
     vec.erase(end_it, vec.end());
-    std::for_each(vec.begin(), vec.end(), printItem<char>);
+    std::for_each(vec.begin(), vec.end(), [](const char& ch) {
+        std::cout << ch << " ";
+    });
+    std::cout << "vec size = " << vec.size() << std::endl;
 }

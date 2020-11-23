@@ -6,14 +6,14 @@
 #include <functional>
 
 template<typename T>
-T sum_func(T a, T b) {
+T sum_func(const T& a, const T& b) {
     return a + b;
 }
 
 template<typename T>
 class mult {
 public:
-    int operator()(T a, T b) const {
+    int operator()(const T& a, const T& b) const {
         return a * b;
     }
 };

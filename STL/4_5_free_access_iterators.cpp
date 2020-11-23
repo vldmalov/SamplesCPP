@@ -9,7 +9,7 @@ int main(int argc, const char * argv[]) {
     
     const int FIND_VAL = -5;
     bool found = std::binary_search(begin(vec), end(vec), FIND_VAL);
-    std::cout << found << std::endl;
+    std::cout << (found ? "true" : "false") << std::endl;
     std::cout << FIND_VAL << " is " << (found ? "found" : "not found") << std::endl;
     return 0;
 }

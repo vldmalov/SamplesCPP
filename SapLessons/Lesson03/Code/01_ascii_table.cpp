@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <fstream>
+#include <fstream>
 
 // Форматирование
 // Перегрузка функций
@@ -8,46 +8,45 @@
 // Вывод в файл/на консоль. Перегрузка
 // Вывод в строку
 
-// const int OUTPUT_FIELD_WIDTH = 7;
+const int OUTPUT_FIELD_WIDTH = 12;
 
-void PrintAsciiTable(/*std::ostream& os,*/ unsigned char firstSymbol, unsigned char lastSymbol)
+void PrintAsciiTable(std::ostream& os, unsigned char firstSymbol, unsigned char lastSymbol)
 {
-    if(firstSymbol > lastSymbol) {
+   if(firstSymbol > lastSymbol) {
         std::cerr << "First symbol code " << (int)firstSymbol << " more than last one " << (int)lastSymbol << std::endl;
         return;
     }
 
-    std::cout << std::left;
-    std::cout.width(7); std::cout << "Dec"; 
-    std::cout.width(7); std::cout << "Hex";
-    std::cout.width(7); std::cout << "Char" << std::endl;
+    os << std::left;
+    os.width(OUTPUT_FIELD_WIDTH); os << "Dec"; 
+    os.width(OUTPUT_FIELD_WIDTH); os << "Hex";
+    os.width(OUTPUT_FIELD_WIDTH); os << "Char" << std::endl;
 
     do {
-        const int symbolCode = static_cast<int>(firstSymbol);
-        std::cout.width(7); std::cout << std::dec << symbolCode;
-        std::cout.width(7); std::cout << std::hex << std::showbase << symbolCode;
-        std::cout.width(7); std::cout << firstSymbol << std::endl;
-
+        const int symbCode = static_cast<int>(firstSymbol);
+        os.width(OUTPUT_FIELD_WIDTH); os << std::showbase << std::dec << symbCode;
+        os.width(OUTPUT_FIELD_WIDTH); os << std::showbase << std::hex << symbCode;
+        os.width(OUTPUT_FIELD_WIDTH); os << firstSymbol << std::endl;
         ++firstSymbol;
     }
     while(firstSymbol < lastSymbol);
 }
 
-// void PrintAsciiTable(unsigned char symbol)
-// {
-//     PrintAsciiTable(symbol, symbol);
-// }
+void PrintAsciiTable(std::ostream& os, unsigned char symbol)
+{
+   PrintAsciiTable(os, symbol, symbol);
+}
 
 int main()
 {
-    PrintAsciiTable('a', 'z');
-    // PrintAsciiTable('a', 'Z');
-    // PrintAsciiTable('a', 'a');
-    // PrintAsciiTable('a');
-    // PrintAsciiTable('A', 'z');
-    // PrintAsciiTable(0, 128);
-    // PrintAsciiTable(128, 255);
+    //PrintAsciiTable('a', 'z');
+    //PrintAsciiTable('A', 'z');
+    //PrintAsciiTable('Z');
 
-    //std::ofstream ofs("AsciiTable.txt");
-    //PrintAsciiTable(ofs, 'a', 'z');
+    //PrintAsciiTable(0, 128);
+     //PrintAsciiTable(128, 255);
+
+    std::ofstream ofs("AsciiTable.txt");
+    PrintAsciiTable(ofs, 'a', 'z');
+    PrintAsciiTable(std::cout, 'a', 'z');
 }
