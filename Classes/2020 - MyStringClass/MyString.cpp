@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstring>
 
+
 MyString::MyString()
 {
     std::cout << "MyString Default Constructor" << std::endl;
@@ -27,8 +28,8 @@ MyString::MyString(const char* cStr)
     _size = strlen(cStr);
     if(_size > 0)
     {
-        _data = new char[_size + 1];
-        strcpy_s(_data, _size + 1, cStr);
+        _data = new char[_size];
+        memcpy(_data, cStr, _size);
     }
 }
 
@@ -39,32 +40,36 @@ MyString::MyString(const MyString& other)
     _size = other._size;
     if(_size > 0)
     {
-        _data = new char[_size + 1];
-        strcpy_s(_data, _size + 1, other._data);
+        _data = new char[_size];
+        memcpy(_data, other._data, _size);
     }
+}
+
+MyString::MyString(MyString&& other) noexcept
+{
+    std::cout << "MyString Move Constructor" << std::endl;
+    swap(*this, other);
 }
 
 MyString& MyString::operator=(const MyString& other)
 {
-    std::cout << "MyString Operator=" << std::endl;
+    std::cout << "MyString Copy Assignment" << std::endl;
 
-    if(this == &other) {
-        return *this;
-    }
-
-    Clean();
-    _size = other._size;
-    if(_size > 0)
-    {
-        _data = new char[_size + 1];
-        strcpy_s(_data, _size + 1, other._data);
-    }
+    MyString tmp(other);
+    swap(*this, tmp);
 
     return *this;
 }
 
+MyString& MyString::operator=(MyString&& other) noexcept
+{
+    std::cout << "MyString Move Assignment" << std::endl;
+    swap(*this, other);
 
-unsigned int MyString::GetSize() const
+    return *this;
+}
+
+size_t MyString::GetSize() const
 {
     return _size;
 }
@@ -84,15 +89,24 @@ const char& MyString::operator[] (size_t idx) const
     return _data[idx];
 }
 
+const char* MyString::begin() const {
+    return _data;
+}
+
+const char* MyString::end() const {
+    return _data + _size;
+}
+
 MyString& MyString::operator+=(const MyString& rhs)
 {
+    std::cout << "MyString Operator+=" << std::endl;
     if (rhs.IsEmpty()) {
         return *this;
     }
 
-    char* newData = new char[_size + rhs._size + 1];
-    strcpy_s(newData, _size + 1, _data);
-    strcpy_s(newData + _size, rhs._size + 1, rhs._data);
+    char* newData = new char[_size + rhs._size];
+    memcpy(newData, _data, _size);
+    memcpy(newData + _size, rhs._data, rhs._size);
     std::swap(_data, newData);
     delete[] newData;
     _size += rhs._size;
@@ -102,6 +116,7 @@ MyString& MyString::operator+=(const MyString& rhs)
 
 MyString operator+(const MyString& lhs, const MyString& rhs)
 {
+    std::cout << "MyString Operator+" << std::endl;
     MyString result = lhs;
     result += rhs;
 
@@ -110,6 +125,7 @@ MyString operator+(const MyString& lhs, const MyString& rhs)
 
 bool operator==(const MyString& lhs, const MyString& rhs)
 {
+    std::cout << "MyString Operator==" << std::endl;
     if (lhs.GetSize() != rhs.GetSize()) {
         return false;
     }
@@ -123,15 +139,16 @@ bool operator==(const MyString& lhs, const MyString& rhs)
     return true;
 }
 
+void swap(MyString& lhs, MyString& rhs)
+{
+    std::swap(lhs._size, rhs._size);
+    std::swap(lhs._data, rhs._data);
+}
+
 std::ostream& operator<<(std::ostream& os, const MyString& str)
 {
-    // for(size_t idx = 0; idx < str.GetSize(); ++idx)
-    // {
-    //     os << str[idx];
-    // }
     if (!str.IsEmpty()) {
-        os << str._data;
+        std::copy(str.begin(), str.end(), std::ostream_iterator<char>(os, ""));
     }
-
     return os;
 }

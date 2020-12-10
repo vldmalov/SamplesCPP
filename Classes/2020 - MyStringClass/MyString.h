@@ -1,9 +1,6 @@
 #pragma once
 #include <ostream>
 
-// Интерфейс
-// Данные
-
 class MyString final {
 
 public:
@@ -12,14 +9,19 @@ public:
 
     MyString(const char* cStr);
     MyString(const MyString& other);
+    MyString(MyString&& other) noexcept;
 
     MyString& operator=(const MyString& other);
+    MyString& operator=(MyString&& other) noexcept;
 
-    unsigned int GetSize() const;
+    size_t GetSize() const;
     bool IsEmpty() const;
 
     char& operator[](size_t idx);
     const char& operator[](size_t idx) const;
+
+    const char* begin() const;
+    const char* end() const;
 
     MyString& operator+=(const MyString& rhs);
 
@@ -28,13 +30,14 @@ private:
 
 private:
     char* _data = nullptr;
-    unsigned int _size = 0;
+    size_t _size = 0;
 
-    friend std::ostream& operator<<(std::ostream& os, const MyString& str);
+    //friend std::ostream& operator<<(std::ostream& os, const MyString& str);
+    friend void swap(MyString& lhs, MyString& rhs);
 };
 
 MyString operator+(const MyString& lhs, const MyString& rhs);
-
 bool operator==(const MyString& lhs, const MyString& rhs);
-
 std::ostream& operator<<(std::ostream& os, const MyString& str);
+
+void swap(MyString& lhs, MyString& rhs);

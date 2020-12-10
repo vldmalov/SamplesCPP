@@ -3,29 +3,20 @@
 
 template<typename T1, typename T2>
 struct pair {
-    
-    T1 first;
-    T2 second;
-    
-    pair()
-    : first(T1())
-    , second(T2())
-    {}
+    T1 first{};
+    T2 second{};
     
     pair(const T1& x, const T2& y)
-    : first(x)
-    , second(y)
-    {
-    }
+    : first(x), second(y) {}
 };
 
-bool operator>(const pair<std::string, int>& lh, const pair<std::string, int>& rh) {
+bool operator>(const pair<std::string, int>& lhs, const pair<std::string, int>& rhs) {
     
-    if(lh.first != rh.first) {
-        return lh.first > rh.first;
+    if(lhs.first != rhs.first) {
+        return lhs.first > rhs.first;
     }
     
-    return lh.second > rh.second;
+    return lhs.second > rhs.second;
 }
 
 template<typename T>

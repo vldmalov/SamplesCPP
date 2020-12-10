@@ -7,9 +7,7 @@ struct pair {
     T2 second;
     
     pair(const T1& _first, const T2& _second)
-    : first(_first)
-    , second(_second) {}
-    
+    : first(_first), second(_second) {}
 };
 
 template<typename T1, typename T2>
@@ -39,25 +37,27 @@ void printVector(const std::vector<T1>& outputVector)
 
 int main(int argc, const char * argv[]) {
     
-    typedef pair<std::string, int> personAge;
+    using procPair = pair<std::string, int>;
     
-    std::vector<personAge> perconAgeGuide;
-    perconAgeGuide.push_back(personAge("Alex", 29));
-    perconAgeGuide.push_back(personAge("Vlad", 22));
-    perconAgeGuide.push_back(personAge("Mary", 25));
-    perconAgeGuide.push_back(personAge("Robby", 41));
-    perconAgeGuide.push_back(personAge("Elena", 17));
-    perconAgeGuide.push_back(personAge("Fedor", 25));
-    perconAgeGuide.push_back(personAge("Boris", 17));
-    perconAgeGuide.push_back(personAge("Venera", 25));
+    std::vector<procPair> processors;
+    processors.reserve(10);
+    processors.emplace_back("4004", 1971);
+    processors.emplace_back("8008", 1972);
+    processors.emplace_back("8080", 1974);
+    processors.emplace_back("8086", 1978);
+    processors.emplace_back("286", 1982);
+    processors.emplace_back("388", 1985);
+    processors.emplace_back("486", 1989);
+    processors.emplace_back("Pentium", 1993);
+    processors.emplace_back("Pentium Pro", 1995);
     
-    std::cout << "Persons before sorting by names and ages:\n";
-    printVector<personAge>(perconAgeGuide);
+    std::cout << "Processors before sorting:\n";
+    printVector<procPair>(processors);
     
-    std::sort(perconAgeGuide.begin(), perconAgeGuide.end());
+    std::sort(processors.begin(), processors.end());
     
-    std::cout << "Persons after sorting by names and ages:\n";
-    printVector<personAge>(perconAgeGuide);
+    std::cout << "Processors after sorting:\n";
+    printVector<procPair>(processors);
     
     return 0;
 }
