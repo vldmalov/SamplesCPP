@@ -22,6 +22,12 @@ int main()
 	userData.push_back(100);
 	userData.push_back(121);
 
+	for (int itemVal : userData)
+	{
+		std::cout << itemVal << " ";
+	}
+	std::cout << std::endl;
+
 	std::cin.ignore();
 	std::cin.get();
 

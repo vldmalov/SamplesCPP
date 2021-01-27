@@ -42,25 +42,25 @@ int main()
 	return 0;
 }
 
-// ”даление с конца
+// Удаление с конца
 //userData.pop_back();
 //printVectorData(userData);
 
-// ”даление произвольного элемента
+// Удаление произвольного элемента
 //userData.erase(userData.begin() + 2);
 //printVectorData(userData);
 
-// ”даление произвольного элемента за константное врем¤
+// Удаление произвольного элемента за константное врем¤
 //std::swap(userData[2], userData[userData.size() - 1]);
 //printVectorData(userData);
 //userData.pop_back();
 //printVectorData(userData);
 
-// ”даление диапазона элементов
+// Удаление диапазона элементов
 //userData.erase(userData.begin() + 2, userData.begin() + 5);
 //printVectorData(userData);
 
-// ”даление по значению
+// Удаление по значению
 /*
 auto foundIt = std::find(userData.begin(), userData.end(), 36);
 if (foundIt != userData.end())

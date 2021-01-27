@@ -11,7 +11,7 @@ T GetMin(T a, T b)
 int main()
 {
 	std::cout << "Min value is " << GetMin(300, 12) << std::endl;
-	std::cout << "Min value is " << GetMin(3.1415, 2.71) << std::endl;
+	std::cout << "Min value is " << GetMin(3.14, 2.71) << std::endl;
 	std::cout << "Min value is " << (char)GetMin('a', 'z') << std::endl;
 	//std::cout << "Min value is " << GetMin(std::string("Intel"), std::string("AMD")) << std::endl;
 
