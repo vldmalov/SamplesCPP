@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/Plyaground2/Figures.cpp
+Figures.h
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/Plyaground2/Figures.h
+
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/Plyaground2/Figures.h
+iostream
+-
+

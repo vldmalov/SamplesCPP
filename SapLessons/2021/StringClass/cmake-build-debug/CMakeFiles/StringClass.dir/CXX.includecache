@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/StringClass/MyString.cpp
+MyString.h
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/StringClass/MyString.h
+iostream
+-
+cstring
+-
+
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/StringClass/MyString.h
+ostream
+-
+
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/StringClass/main.cpp
+iostream
+-
+algorithm
+-
+cassert
+-
+MyString.h
+/Users/vladimirmalov/Documents/Vldmalov/SamplesCPP/SapLessons/2021/StringClass/MyString.h
+
