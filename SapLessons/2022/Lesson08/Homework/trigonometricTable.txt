@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <iomanip>
+
+struct TableInfo {
+  TableInfo() = default;
+  TableInfo(int Degrees, float Sin, float Cos, float Tg)
+      : _degrees(Degrees)
+      , _sin(Sin)
+      , _cos(Cos)
+      , _tg(Tg)
+  {}
+
+  friend std::ostream& operator<<(std::ostream& os, const TableInfo& info);
+
+private:
+  int _degrees;
+  float _sin;
+  float _cos;
+  float _tg;
+};
+
+std::ostream& operator<<(std::ostream& os, const TableInfo& info) {
+  os.width(8);
+  os << std::left << info._degrees;
+
+  os.width(7);
+  os << std::right << std::setprecision(3) << info._sin;
+
+  os.width(7);
+  os << std::right << std::setprecision(3) << info._cos;
+
+  os.width(7);
+  os << std::right << std::setprecision(3) << info._tg;
+
+  return os;
+}
+
+float getSin(int degrees) {
+  return std::sin(degrees);
+}
+
+float getCos(int degrees) {
+  return std::cos(degrees);
+}
+
+float getTg(int degrees) {
+  return std::tan(degrees);
+}
+
+int main()
+{
+  const int Degrees[] = {0, 30, 45, 60};
+  std::vector<TableInfo> rows;
+
+  // Filling trigonometric data  
+  for(int deg : Degrees) {
+    rows.push_back({deg, getSin(deg), getCos(deg), getTg(deg)});
+  }
+
+  std::cout << std::setw(8) << std::left << "Degrees" << std::setw(7) << std::right << "sin" << std::setw(7) << "cos" << std::setw(7) << "tg" << std::endl;
+
+  // Output trigonometric data  
+  for(TableInfo& row : rows) {
+    std::cout << row << std::endl;
+  }
+}

@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+
+struct ASCIIInfo {
+  ASCIIInfo() = default;
+  ASCIIInfo(int Dec, const std::string& Hex, const std::string& Char)
+      : _dec(Dec)
+      , _hex(Hex)
+      , _char(Char)
+  {}
+
+  friend std::ostream& operator<<(std::ostream& os, const ASCIIInfo& info);
+
+private:
+  int _dec;
+  std::string _hex;
+  std::string _char;
+};
+
+std::ostream& operator<<(std::ostream& os, const ASCIIInfo& info) {
+  os.width(3);
+  os << std::left << info._dec << " ";
+
+  os.width(3);
+  os << info._hex << " ";
+
+  os.width(5);
+  os << std::left << info._char;
+
+  return os;
+}
+
+int main()
+{
+  std::vector<ASCIIInfo> rows = {
+    {96, "60", "`"},
+    {97, "61", "a"},
+    {98, "62", "b"},
+    {99, "63", "c"},
+    {100, "64", "d"},
+    {101, "65", "e"},
+    {102, "66", "f"},
+    {103, "67", "g"},
+    {104, "68", "h"},
+    {105, "69", "i"},
+    {106, "70", "j"},
+    {107, "71", "k"},
+    {108, "72", "l"},
+    {109, "73", "m"}
+
+  };
+
+  for(ASCIIInfo& row : rows) {
+    std::cout << row << std::endl;
+  }
+}
